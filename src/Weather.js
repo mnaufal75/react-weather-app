@@ -16,28 +16,24 @@ class Weather extends Component {
 	}
 
 	render() {
-		const prop = this.props.weatherData.map((weather, index) => {
-			const fullDate = new Date(weather.dt_txt)
-			const date = fullDate.getDate()
-			const month = fullDate.getMonth()
-			return (
-				<tr key={index}>
-					<td>{date}/{month+1}</td>
-					<td>{this.kelvinToCelcius(weather.main.temp)} C</td>
-					<td>{weather.weather[0].main}</td>
-				</tr>
-			)
-		})
+		const { weatherData } = this.props
+		console.log(weatherData)
+
+		const temp = weatherData.main.temp
+		const tempCelcius = this.kelvinToCelcius(temp)
+
+		const fullDate = new Date(weatherData.dt_txt)
+		const weather = weatherData.weather[0].main
+
+		const date = fullDate.getDate()
+		const month = fullDate.getMonth() + 1
 
 		return(
-			<table>
-				<tr>
-					<th>Time</th>
-					<th>Temperature</th>
-					<th>Weather</th>
-				</tr>
-				{prop}
-			</table>
+			<tr>
+				<td>{date}/{month}</td>
+				<td>{tempCelcius} C</td>
+				<td>{weather}</td>
+			</tr>
 		)
 	}
 }

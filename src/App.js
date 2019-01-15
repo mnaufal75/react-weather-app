@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Weather from './Weather'
+import React, { Component } from 'react'
+import './App.css'
+import WeatherTable from './WeatherTable'
 
 const API = 'https://api.openweathermap.org/data/2.5/forecast?q=Bandung,id&appid=d484c4caee8f496e34300af8f2142997'
 
@@ -56,9 +55,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Weather weatherData={this.state.weathers} />
+        <WeatherTable weathersData={this.state.weathers} />
       </div>
-    );
+    )
   }
 }
 
