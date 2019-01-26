@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './WeatherTable.css'
 import Weather from './Weather'
+import WeatherDaily from './WeatherDaily'
 
 class WeatherTable extends Component {
 	constructor() {
@@ -11,19 +12,33 @@ class WeatherTable extends Component {
 	}
 
 	render() {
-		let div = 0
-		const prop = this.props.weathersData.map((weather, index) => {
-			if (index % 8 == 0) {
-				return (
-					<Weather index={div} weatherData={weather} />
-				)
-				div++
-			}
-			
-		})
+		const { daily, weathersData } = this.props
+		let prop
+	
+		if (!daily) {
+			let div = -1
+			prop = weathersData.map((weather, index) => {
+				if (index % 8 === 0) {
+					div++
+					return (
+						<Weather index={div} weatherData={weather} />
+					)
+				}
+			})
+		} else {
+			let div = -1
+			prop = weathersData.map((weather, index) => {
+				if (parseInt(index / 5) === parseInt(this.props.match.params.id)) {
+					div++
+					return (
+						<WeatherDaily index={div} weatherData={weather} />
+					)
+				}
+			})
+		}
 
 		return(
-			<div class="container">
+			<div className="container">
 				{prop}
 			</div>
 		)

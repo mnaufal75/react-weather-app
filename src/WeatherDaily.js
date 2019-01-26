@@ -1,25 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
-import './Weather.css'
+import './WeatherDaily.css'
 
-const dayTable = {
-	0: 'sunday',
-	1: 'monday',
-	2: 'tuesday',
-	3: 'wednesday',
-	4: 'thursday',
-	5: 'friday',
-	6: 'saturday',
-}
-
-const weatherTable = {
-	'Rain': 'https://img.icons8.com/android/96/000000/rain.png',
-	'Cloudy': 'https://img.icons8.com/android/96/000000/clouds.png',
-	'overcast Clouds': 'https://img.icons8.com/android/96/000000/clouds.png',
-	'Clear': 'https://img.icons8.com/android/96/000000/sun.png'
-}
-
-class Weather extends Component {
+class WeatherDaily extends Component {
 	constructor() {
 		super()
 
@@ -65,4 +48,4 @@ class Weather extends Component {
 	}
 }
 
-export default Weather
+export default WeatherDaily

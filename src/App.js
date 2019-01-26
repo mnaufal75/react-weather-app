@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
+
 import './App.css'
 import WeatherTable from './WeatherTable'
 
@@ -54,9 +56,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <WeatherTable weathersData={this.state.weathers} />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <h2>Cuaca Bandung</h2>
+
+          <Route
+            path="/" exact
+            component={(props) => <WeatherTable {...props} weathersData={this.state.weathers} daily={false} />}
+          />
+
+          <Route
+            path="/:id"
+            component={(props) => <WeatherTable {...props} weathersData={this.state.weathers} daily={true} />}
+          />
+          
+        </div>
+      </BrowserRouter>
     )
   }
 }
