@@ -11,22 +11,21 @@ class WeatherTable extends Component {
 	}
 
 	render() {
+		let div = 0
 		const prop = this.props.weathersData.map((weather, index) => {
-			return (
-				<Weather weatherData={weather} />
-			)
+			if (index % 8 == 0) {
+				return (
+					<Weather index={div} weatherData={weather} />
+				)
+				div++
+			}
+			
 		})
 
 		return(
-			<table>
-				<tr>
-					<th>Time</th>
-					<th>Temperature</th>
-			 		<th>Weather</th>
-				</tr>
-
+			<div class="container">
 				{prop}
-			</table>
+			</div>
 		)
 	}
 }

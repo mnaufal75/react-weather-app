@@ -1,0 +1,12 @@
+.weatherImage {
+	text-align: left
+}
+
+.div_0, .div_1, .div_2, .div_3, .div_4 {
+	width: 20%;
+	text-align: center;
+}
+
+.day {
+	color: #555;
+}
