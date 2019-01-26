@@ -1,0 +1,23 @@
+.weatherImage {
+	text-align: left
+}
+
+.div_0, .div_1, .div_2, .div_3, .div_4, .div_5, .div_6, .div_7 {
+	width: auto;
+	text-align: center;
+}
+
+.date {
+	color: #555;
+	margin: 10px;
+}
+
+.clock {
+	color: #555;
+	margin: 10px;
+}
+
+.temp {
+	color: #555;
+	margin: 10px;
+}

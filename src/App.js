@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 import WeatherTable from './WeatherTable'
 
-const API = 'https://api.openweathermap.org/data/2.5/forecast?q=Jakarta,id&appid=d484c4caee8f496e34300af8f2142997'
+const API = 'https://api.openweathermap.org/data/2.5/forecast?q=Jakarta,id&appid=d484c4caee8f496e34300af8f2142997&units=metric'
 
 const weathers = [
   {

@@ -28,7 +28,8 @@ class WeatherTable extends Component {
 		} else {
 			let div = -1
 			prop = weathersData.map((weather, index) => {
-				if (parseInt(index / 5) === parseInt(this.props.match.params.id)) {
+				console.log(index / 8)
+				if (parseInt(index / 8) === parseInt(this.props.match.params.id)) {
 					div++
 					return (
 						<WeatherDaily index={div} weatherData={weather} />
