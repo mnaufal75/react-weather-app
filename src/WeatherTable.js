@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './WeatherTable.css'
 import Weather from './Weather'
 import WeatherDaily from './WeatherDaily'
+import WeatherGraph from './WeatherGraph'
 
 class WeatherTable extends Component {
 	constructor() {
@@ -21,7 +22,9 @@ class WeatherTable extends Component {
 				if (index % 8 === 0) {
 					div++
 					return (
-						<Weather index={div} weatherData={weather} />
+						<div>
+							<Weather index={div} weatherData={weather} />
+						</div>
 					)
 				}
 			})
@@ -39,9 +42,12 @@ class WeatherTable extends Component {
 		}
 
 		return(
-			<div className="container">
-				{prop}
-			</div>
+			<div>
+				<div className="container">
+					{prop}
+				</div>
+				<WeatherGraph weathersData={weathersData} />
+			</div>	
 		)
 	}
 }

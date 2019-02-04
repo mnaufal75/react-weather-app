@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@vx/group": "0.0.183",
+    "@vx/mock-data": "0.0.182",
+    "@vx/scale": "0.0.182",
+    "@vx/shape": "0.0.183",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
