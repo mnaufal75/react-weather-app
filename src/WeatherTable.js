@@ -15,7 +15,7 @@ class WeatherTable extends Component {
 	render() {
 		const { daily, weathersData } = this.props
 		let prop
-	
+
 		if (!daily) {
 			let div = -1
 			prop = weathersData.map((weather, index) => {
@@ -31,7 +31,6 @@ class WeatherTable extends Component {
 		} else {
 			let div = -1
 			prop = weathersData.map((weather, index) => {
-				console.log(index / 8)
 				if (parseInt(index / 8) === parseInt(this.props.match.params.id)) {
 					div++
 					return (
@@ -47,7 +46,7 @@ class WeatherTable extends Component {
 					{prop}
 				</div>
 				<WeatherGraph weathersData={weathersData} />
-			</div>	
+			</div>
 		)
 	}
 }
