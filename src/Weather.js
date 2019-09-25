@@ -13,27 +13,24 @@ class Weather extends Component {
 	render() {
 		const { weatherData, index } = this.props
 
-		const tempMin = weatherData.main.temp_min
-		const tempMax = weatherData.main.temp_max
+		const tempMin = Math.round(weatherData.main.temp_min)
+		const tempMax = Math.round(weatherData.main.temp_max)
 
 		const fullDate = new Date(weatherData.dt_txt)
-		const weather = 'http://openweathermap.org/img/w/' + weatherData.weather[0].icon + '.png'
+		const weather = 'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'
 
-		const options1 = { weekday: 'short', day: 'numeric', month: 'numeric', timeZone: 'Asia/Jakarta' }
-		const options2 = { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jakarta', hour12: false }
-		const date = fullDate.toLocaleDateString("en-US", options1)
-		const clock = fullDate.toLocaleDateString("en-US", options2)
+		const options = { weekday: 'short' }
+		const date = fullDate.toLocaleDateString("en-US", options)
 
 		return(
 			<div className={"div_"+index}>
-				<h5 className="date">{date}</h5>
-				<h5 className="clock">{clock}</h5>
+				<h4 className="date">{date}</h4>
 
 				<Link to={"/"+index}>
-					<img className="weatherImage" src={weather} width="50" />
+					<img className="weatherImage" src={weather} width="100" />
 				</Link>
 
-				<h5 className="temp">{tempMin}° {tempMax}°</h5>
+				<h4 className="temp">{tempMin}° {tempMax}°</h4>
 			</div>
 		)
 	}

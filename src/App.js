@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 import WeatherTable from './WeatherTable'
 
-const API = 'https://api.openweathermap.org/data/2.5/forecast?q=Jakarta,id&appid=d484c4caee8f496e34300af8f2142997&units=metric'
+const API = 'https://api.openweathermap.org/data/2.5/forecast?q=Bandung,id&appid=d484c4caee8f496e34300af8f2142997&units=metric'
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <h2>Cuaca Bandung</h2>
+          <h1 className="title">Weather App</h1>
 
           <Route
             path="/" exact

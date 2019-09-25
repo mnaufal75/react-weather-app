@@ -22,9 +22,7 @@ class WeatherTable extends Component {
 				if (index % 8 === 0) {
 					div++
 					return (
-						<div>
-							<Weather index={div} weatherData={weather} />
-						</div>
+						<Weather index={div} weatherData={weather} />
 					)
 				}
 			})
