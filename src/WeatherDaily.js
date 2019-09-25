@@ -15,7 +15,7 @@ class WeatherDaily extends Component {
 		const tempMin = weatherData.main.temp_min
 		const tempMax = weatherData.main.temp_max
 
-		const fullDate = new Date(weatherData.dt_txt)
+		const fullDate = new Date(weatherData.dt * 1000)
 		const weather = 'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'
 
 		const options = { weekday: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jakarta', hour12: false }

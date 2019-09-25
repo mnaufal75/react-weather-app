@@ -16,7 +16,7 @@ class Weather extends Component {
 		const tempMin = Math.round(weatherData.main.temp_min)
 		const tempMax = Math.round(weatherData.main.temp_max)
 
-		const fullDate = new Date(weatherData.dt_txt)
+		const fullDate = new Date(weatherData.dt * 1000)
 		const weather = 'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'
 
 		const options = { weekday: 'short' }
