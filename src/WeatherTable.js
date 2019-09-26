@@ -14,36 +14,28 @@ class WeatherTable extends Component {
 
 	render() {
 		const { daily, weathersData } = this.props
-		let prop
+		let weathers
 
 		if (!daily) {
-			let div = -1
-			prop = weathersData.map((weather, index) => {
-				if (index % 8 === 0) {
-					div++
-					return (
-						<Weather index={div} weatherData={weather} />
-					)
-				}
+			weathers = weathersData.filter((weather, index) => {
+				return (index % 8 === 0)
 			})
 		} else {
-			let div = -1
-			prop = weathersData.map((weather, index) => {
-				if (parseInt(index / 8) === parseInt(this.props.match.params.id)) {
-					div++
-					return (
-						<WeatherDaily index={div} weatherData={weather} />
-					)
-				}
+			weathers = weathersData.filter((weather, index) => {
+				return (parseInt(index / 8) === parseInt(this.props.match.params.id))
 			})
 		}
 
 		return(
 			<div>
 				<div className="container">
-					{prop}
+					{weathers.map((weather, index) => {
+						return daily ? <WeatherDaily index={index} weatherData={weather} /> : <Weather index={index} weatherData={weather} />
+					})}
 				</div>
-				<WeatherGraph weathersData={weathersData} />
+				<div className="graph-container">
+					<WeatherGraph weathersData={weathers} />
+				</div>
 			</div>
 		)
 	}

@@ -5,3 +5,8 @@
 	display: flex;
 	margin: auto;
 }
+
+.graph-container {
+	widows: auto;
+	text-align: center;
+}
