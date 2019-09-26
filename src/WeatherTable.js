@@ -34,7 +34,7 @@ class WeatherTable extends Component {
 					})}
 				</div>
 				<div className="graph-container">
-					<WeatherGraph weathersData={weathers} />
+					{ daily && <WeatherGraph weathersData={weathers} /> }
 				</div>
 			</div>
 		)
