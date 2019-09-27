@@ -2,20 +2,12 @@
 	text-align: left
 }
 
-.div_0, .div_1, .div_2, .div_3, .div_4 {
+.weather-weekly {
 	width: auto;
 	text-align: center;
 	margin: 20px;
 }
 
-.date {
-	color: #555;
-}
-
-.clock {
-	color: #555;
-}
-
-.temp {
+.date, .clock, .temp {
 	color: #555;
 }

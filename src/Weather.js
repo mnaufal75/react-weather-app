@@ -23,11 +23,11 @@ class Weather extends Component {
 		const date = fullDate.toLocaleDateString("en-US", options)
 
 		return(
-			<div className={"div_"+index}>
+			<div className={"weather-weekly"}>
 				<h4 className="date">{date}</h4>
 
 				<Link to={"/"+index}>
-					<img className="weatherImage" src={weather} width="100" />
+					<img className="weatherImage" alt={index} src={weather} width="100" />
 				</Link>
 
 				<h4 className="temp">{tempMin}° {tempMax}°</h4>

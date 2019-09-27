@@ -12,8 +12,8 @@ class WeatherDaily extends Component {
 	render() {
 		const { weatherData, index } = this.props
 
-		const tempMin = weatherData.main.temp_min
-		const tempMax = weatherData.main.temp_max
+		const tempMin = Math.round(weatherData.main.temp_min)
+		const tempMax = Math.round(weatherData.main.temp_max)
 
 		const fullDate = new Date(weatherData.dt * 1000)
 		const weather = 'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'
@@ -22,12 +22,12 @@ class WeatherDaily extends Component {
 		const clock = fullDate.toLocaleDateString("en-US", options)
 
 		return(
-			<div className={"div_"+index}>
-				<h5 className="clock">{clock}</h5>
+			<div className={"weather-daily"}>
+				<h4 className="clock">{clock}</h4>
 
-					<img class="weatherImage" src={weather} width="100" />
+					<img class="weatherImage" alt={index} src={weather} width="100" />
 
-				<h5 className="temp">{tempMin}° {tempMax}°</h5>
+				<h4 className="temp">{tempMin}° {tempMax}°</h4>
 			</div>
 		)
 	}
