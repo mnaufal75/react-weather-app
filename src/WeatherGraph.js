@@ -1,6 +1,5 @@
 import React from 'react';
-import { AxisBottom } from '@vx/axis';
-import { Group } from '@vx/group';
+import { AxisBottom, AxisLeft } from '@vx/axis';
 import { scaleLinear, scaleTime } from '@vx/scale';
 import { Line, LinePath } from '@vx/shape';
 import { extent } from 'd3-array';
@@ -11,15 +10,15 @@ import './WeatherGraph.css';
 // Define the graph dimensions and margins
 const width = 600;
 const height = 300;
-const margin = { top: 20, bottom: 100, left: 20, right: 20 };
+const margin = { top: 30, bottom: 30, left: 30, right: 30 };
 
 // Then we'll create some bounds
-const xMax = width - margin.left - margin.right;
-const yMax = height - margin.top - margin.bottom;
+const xMax = width - margin.left;
+const yMax = height - margin.top;
 
 const parseDate = timeParse('%Y-%m-%d %H:%M:%S');
-const format = timeFormat('%d/%m %H:%M');
-const formatDate = date => format(parseDate(date));
+const format = timeFormat('%a %H:%M');
+// const formatDate = date => format(parseDate(date));
 
 // We'll make some helpers to get at the data we want
 const x = d => d.date;
@@ -32,53 +31,66 @@ const WeatherGraph = (props) => {
 
   // And then scale the graph by our data
 	const xScale = scaleTime({
-		range: [0, xMax],
+		range: [margin.left + margin.right, xMax],
 		domain: extent(data, x)
   });
 	const yScale = scaleLinear({
-		rangeRound: [yMax, 0],
+		rangeRound: [yMax, margin.top],
     domain: extent(data, y)
 	});
 
   // Finally we'll embed it all in an SVG
   return (
     <svg class="graph" width={width} height={height}>
-      {/* <rect x={0} y={0} width={width} height={height} fill="#444444" rx={10} /> */}
+      <rect x={0} y={0} width={width} height={height} fill="#eee" rx={10} />
+      <AxisLeft
+        left={margin.left + margin.right}
+        scale={yScale}
+        label="Temp"
+        stroke={'#000000'}
+        numTicks={5}
+      >
+      </AxisLeft>
       <AxisBottom
           top={height - margin.bottom}
           left={0}
           scale={xScale}
-          numTicks={5}
           label="Time"
           tickFormat={format}
         >
-          {axis => {
+          {props => {
             const tickLabelSize = 10;
-            const tickRotate = 45;
-            const tickColor = '#8e205f';
-            const axisCenter = (axis.axisToPoint.x - axis.axisFromPoint.x) / 2;
+            const tickColor = '#000000';
+            const axisP = (props.axisToPoint.x - props.axisFromPoint.x) / 7;
+
             return (
               <g className="my-custom-bottom-axis">
-                {axis.ticks.map((tick, i) => {
-                  const tickX = tick.to.x;
-                  const tickY = tick.to.y + tickLabelSize + axis.tickLength;
-                  return (
-                    <Group key={`vx-tick-${tick.value}-${i}`} className={'vx-axis-tick'}>
-                      <Line from={tick.from} to={tick.to} stroke={tickColor} />
-                      <text
-                        transform={`translate(${tickX}, ${tickY}) rotate(${tickRotate})`}
-                        fontSize={tickLabelSize}
-                        textAnchor="middle"
-                        fill={tickColor}
-                      >
-                        {tick.formattedValue}
-                      </text>
-                    </Group>
-                  );
-                })}
-                <text textAnchor="middle" transform={`translate(${axisCenter}, 50)`} fontSize="8">
-                  {axis.label}
-                </text>
+                <Line
+                  from={{ x: props.axisFromPoint.x, y: margin.down }}
+                  to={{ x: props.axisToPoint.x, y: margin.down }}
+                  stroke={tickColor}
+                 />
+                {data
+                  .map((d, i) => {
+                    console.log(d.date)
+                    return (
+                      <>
+                        <Line
+                          from={{ x: props.axisFromPoint.x + i * axisP, y: 0 }}
+                          to={{ x: props.axisFromPoint.x + i * axisP, y: 8 }}
+                          stroke={tickColor}
+                        />
+                        <text
+                          transform={`translate(${props.axisFromPoint.x + i * axisP}, 18)`}
+                          fontSize={tickLabelSize}
+                          textAnchor="middle"
+                          fill={tickColor}
+                        >
+                          {format(d.date)}
+                        </text>
+                      </>
+                  )})
+                }
               </g>
             );
           }}
@@ -87,8 +99,8 @@ const WeatherGraph = (props) => {
         data={data}
         x={data => xScale(x(data))}
         y={data => yScale(y(data))}
-        stroke={'#000000'}
-        strokeWidth={4}
+        stroke={'#555'}
+        strokeWidth={2}
       />
     </svg>
   );
