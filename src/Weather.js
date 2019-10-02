@@ -1,39 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './Weather.css'
 
-class Weather extends Component {
-	constructor() {
-		super()
+const Weather = ({ weatherData, index }) => {
+  const tempMin = Math.round(weatherData.main.temp_min)
+  const tempMax = Math.round(weatherData.main.temp_max)
 
-		this.state = {
-		}
-	}
+  const fullDate = new Date(weatherData.dt * 1000)
+  const weather = 'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'
 
-	render() {
-		const { weatherData, index } = this.props
+  const options = { weekday: 'short' }
+  const date = fullDate.toLocaleDateString("en-US", options)
 
-		const tempMin = Math.round(weatherData.main.temp_min)
-		const tempMax = Math.round(weatherData.main.temp_max)
+  return(
+    <div className={"weather-weekly"}>
+      <h4 className="date">{date}</h4>
 
-		const fullDate = new Date(weatherData.dt * 1000)
-		const weather = 'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'
+      <Link to={"/"+index}>
+        <img className="weatherImage" alt={index} src={weather} width="100" />
+      </Link>
 
-		const options = { weekday: 'short' }
-		const date = fullDate.toLocaleDateString("en-US", options)
-
-		return(
-			<div className={"weather-weekly"}>
-				<h4 className="date">{date}</h4>
-
-				<Link to={"/"+index}>
-					<img className="weatherImage" alt={index} src={weather} width="100" />
-				</Link>
-
-				<h4 className="temp">{tempMin}° {tempMax}°</h4>
-			</div>
-		)
-	}
+      <h4 className="temp">{tempMin}° {tempMax}°</h4>
+    </div>
+  )
 }
 
 export default Weather

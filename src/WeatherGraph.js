@@ -72,7 +72,7 @@ const WeatherGraph = (props) => {
                  />
                 {data
                   .map((d, i) => {
-                    console.log(d.date)
+                    
                     return (
                       <>
                         <Line
