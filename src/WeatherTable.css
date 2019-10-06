@@ -1,12 +1,12 @@
 .container {
-	width: auto;
-	text-align: left;
-	justify-content: center;
-	display: flex;
-	margin: auto;
+  width: auto;
+  text-align: left;
+  justify-content: center;
+  display: flex;
+  margin: auto;
 }
 
 .graph-container {
-	widows: auto;
-	text-align: center;
+  widows: auto;
+  text-align: center;
 }

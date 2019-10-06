@@ -1,13 +1,15 @@
 .weatherImage {
-	text-align: left
+  text-align: left;
 }
 
 .weather-weekly {
-	width: auto;
-	text-align: center;
-	margin: 20px;
+  width: auto;
+  text-align: center;
+  margin: 20px;
 }
 
-.date, .clock, .temp {
-	color: #555;
+.date,
+.clock,
+.temp {
+  color: #555;
 }
