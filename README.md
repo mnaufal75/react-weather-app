@@ -1,5 +1,7 @@
 # React Weather App
 
+Live [here](https://gifted-jennings-f4fb17.netlify.app/)
+
 ## Weekly weather 
 
 You can click the icon to view daily weather on that particular day
